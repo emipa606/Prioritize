@@ -1,4 +1,4 @@
-# [Prioritize (Continued)]()
+# [Prioritize (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3276664162)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -49,7 +49,7 @@ You can see priority even not using designator using Right Bottom priority icon 
 
 # Compatibility
 
-**This mod requires HugsLib**
+~~**This mod requires HugsLib**~~
 Should not break existing saves.
 Should conflict with anything modifies construct job. (I can fix it later)
 Should compatible with various mods, and you probably can priortize them!
@@ -77,4 +77,6 @@ Non steam download https://github.com/kpqi5858/Prioritize/releases/tag/v1.1
 -  If you have the solution for a problem, please post it to the GitHub repository.
 -  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
+[![Image](https://img.shields.io/github/v/release/emipa606/Prioritize?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3276664162) | tags: prioritization,  jobs

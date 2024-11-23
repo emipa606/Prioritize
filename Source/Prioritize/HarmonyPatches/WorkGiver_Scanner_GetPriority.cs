@@ -9,12 +9,12 @@ public class WorkGiver_Scanner_GetPriority
 {
     public static void Postfix(Pawn pawn, TargetInfo t, ref float __result)
     {
-        if (__result < 0)
-        {
-            return;
-        }
+        //if (__result < 0)
+        //{
+        //    return;
+        //}
 
-        if (pawn.Faction is { IsPlayer: false })
+        if (!pawn.IsPlayerControlled)
         {
             return;
         }
