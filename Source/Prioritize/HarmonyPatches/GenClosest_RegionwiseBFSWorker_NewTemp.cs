@@ -4,7 +4,7 @@ using Verse;
 
 namespace Prioritize.HarmonyPatches;
 
-[HarmonyPatch(typeof(GenClosest), nameof(GenClosest.RegionwiseBFSWorker_NewTemp))]
+[HarmonyPatch(typeof(GenClosest), nameof(GenClosest.RegionwiseBFSWorker))]
 public class GenClosest_RegionwiseBFSWorker_NewTemp
 {
     public static void Prefix(ref Func<Thing, float> priorityGetter)

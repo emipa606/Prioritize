@@ -14,7 +14,7 @@ public class WorkGiver_Scanner_GetPriority
         //    return;
         //}
 
-        if (!pawn.IsPlayerControlled)
+        if (!pawn.IsColonist)
         {
             return;
         }

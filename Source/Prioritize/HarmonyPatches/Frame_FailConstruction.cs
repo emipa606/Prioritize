@@ -24,10 +24,10 @@ public class Frame_FailConstruction
                 patchphase = 2;
             }
 
-            if (inst.operand == typeof(GenSpawn).GetMethod(nameof(GenSpawn.Spawn),
+            if (inst.operand.Equals( typeof(GenSpawn).GetMethod(nameof(GenSpawn.Spawn),
                 [
                     typeof(Thing), typeof(IntVec3), typeof(Map), typeof(Rot4), typeof(WipeMode), typeof(bool)
-                ]))
+                ])))
             {
                 patchphase = 1;
             }

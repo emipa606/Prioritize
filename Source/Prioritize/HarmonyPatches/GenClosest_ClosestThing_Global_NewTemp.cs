@@ -4,7 +4,7 @@ using Verse;
 
 namespace Prioritize.HarmonyPatches;
 
-[HarmonyPatch(typeof(GenClosest), nameof(GenClosest.ClosestThing_Global_NewTemp))]
+[HarmonyPatch(typeof(GenClosest), nameof(GenClosest.ClosestThing_Global))]
 public class GenClosest_ClosestThing_Global_NewTemp
 {
     public static void Prefix(ref Func<Thing, float> priorityGetter)

@@ -58,7 +58,7 @@ public class PriorityMapData : MapComponent
         else if (Scribe.mode == LoadSaveMode.LoadingVars)
         {
             priorityGrid = new ushort[numCells];
-            DataExposeUtility.LookByteArray(ref griddata, "priorityGrid");
+            PrioritizeDataExposeUtility.LookByteArray(ref griddata, "priorityGrid");
             DataSerializeUtility.LoadUshort(griddata, numCells, delegate(int c, ushort val) { priorityGrid[c] = val; });
             griddata = null;
         }
@@ -73,7 +73,7 @@ public class PriorityMapData : MapComponent
             arr = MapSerializeUtility.SerializeUshort(map, shortReader);
         }
 
-        DataExposeUtility.LookByteArray(ref arr, label);
+        PrioritizeDataExposeUtility.LookByteArray(ref arr, label);
         if (Scribe.mode == LoadSaveMode.LoadingVars)
         {
             MapSerializeUtility.LoadUshort(arr, map, shortWriter);
