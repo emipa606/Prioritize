@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Reflection;
+using UnityEngine;
 using Verse;
+using HarmonyLib;
 
 namespace Prioritize;
 
@@ -26,7 +29,7 @@ public class Designator_SetPriority : Designator
         }
         else
         {
-            Find.WindowStack.Add(new Dialog_SelectPriority());
+            PriorityWindow.Open();
         }
     }
 

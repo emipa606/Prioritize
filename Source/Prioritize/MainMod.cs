@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
@@ -25,12 +25,7 @@ public static class MainMod
     public static PriorityDrawMode ForcedDrawMode = PriorityDrawMode.None;
 
 
-    public static readonly HashSet<int> DestroyedThingId = [];
-
-    static MainMod()
-    {
-        new Harmony("Mlie.Prioritize").PatchAll(Assembly.GetExecutingAssembly());
-    }
+    public static readonly HashSet<int> DestroyedThingId = new HashSet<int>();
 
     public static void RemoveThingPriorityNow()
     {

@@ -1,10 +1,11 @@
 ﻿using Mlie;
+using System.Reflection;
+using HarmonyLib;
 using UnityEngine;
 using Verse;
 
 namespace Prioritize;
 
-[StaticConstructorOnStartup]
 internal class PrioritizeMod : Mod
 {
     /// <summary>
@@ -23,6 +24,7 @@ internal class PrioritizeMod : Mod
         instance = this;
         Settings = GetSettings<PrioritizeSettings>();
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
+        new Harmony("Mlie.Prioritize").PatchAll(Assembly.GetExecutingAssembly());
     }
 
     /// <summary>

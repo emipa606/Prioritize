@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -20,12 +24,16 @@ public class Designator_Priority_Thing : Designator
 
     public override int DraggableDimensions => 2;
 
+    public override bool DragDrawMeasurements => true;
+
+
+
     public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
     {
         get
         {
             yield return new FloatMenuOption("Priority".Translate(),
-                delegate { Find.WindowStack.Add(new Dialog_SelectPriority()); });
+                PriorityWindow.Open);
 
             yield return new FloatMenuOption("Options".Translate(),
                 PriorityShowConditions.ShowConditionsMenuBox, MenuOptionPriority.High);
@@ -73,6 +81,31 @@ public class Designator_Priority_Thing : Designator
         MainMod.save.SetThingPriority(t, MainMod.SelectedPriority);
     }
 
+    private static void DrawMouseAttachmentReflected(Texture iconTex, string text, float angle, Vector2 offset)
+    {
+        MethodInfo drawMouseAttachmentMethod = AccessTools.Method(
+            typeof(GenUI),
+            "DrawMouseAttachment",
+            new Type[] { typeof(Texture), typeof(string), typeof(float), typeof(Vector2), typeof(Rect?), typeof(Color?), typeof(bool), typeof(Color), typeof(Color?), typeof(Action<Rect>) }
+        );
+
+        // Prepare arguments, filling in default values for optional parameters
+        object[] parameters = new object[] {
+            iconTex,
+            text,
+            angle,
+            offset,
+            null,
+            null,
+            false,
+            Color.white,
+            null,
+            null
+        };
+
+        drawMouseAttachmentMethod.Invoke(null, parameters);
+    }
+
     public override void SelectedUpdate()
     {
         GenUI.RenderMouseoverBracket();
@@ -80,11 +113,16 @@ public class Designator_Priority_Thing : Designator
 
     public override void RenderHighlight(List<IntVec3> dragCells)
     {
-        DesignatorUtility.RenderHighlightOverSelectableThings(this, dragCells);
+        Material highlightMat = SolidColorMaterials.SimpleSolidColorMaterial(new Color(1f, 1f, 1f, 0.3f)); // A simple white transparent material
+        foreach (IntVec3 cell in dragCells)
+        {
+            Vector3 position = cell.ToVector3ShiftedWithAltitude(AltitudeLayer.MetaOverlays);
+            Graphics.DrawMesh(MeshPool.plane10, position, Quaternion.identity, highlightMat, 0);
+        }
     }
 
     public override void DrawMouseAttachments()
     {
-        GenUI.DrawMouseAttachment(icon, MainMod.SelectedPriority.ToString(), iconAngle, iconOffset);
+        DrawMouseAttachmentReflected(icon, MainMod.SelectedPriority.ToString(), iconAngle, iconOffset);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using RimWorld.Planet;
+using System.Reflection;
 using UnityEngine;
 using Verse;
+using HarmonyLib;
 
 namespace Prioritize;
 
@@ -19,8 +21,18 @@ public class PriorityGameComponent : GameComponent
 
     public override void GameComponentOnGUI()
     {
+        PriorityWindow.Draw();
         base.GameComponentOnGUI();
-        if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
+        if (MainMod.save == null)
+        { 
+            return;
+        }
+        if (Find.CurrentMap == null)
+        {
+            return;
+        }
+        PropertyInfo worldRenderedNowProperty = AccessTools.Property(typeof(WorldRendererUtility), "WorldRenderedNow");
+        if (worldRenderedNowProperty != null && (bool)worldRenderedNowProperty.GetValue(null))
         {
             return;
         }

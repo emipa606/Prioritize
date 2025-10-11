@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
@@ -25,7 +27,7 @@ public static class PriorityShowConditions
             }
 
             var res = t is Blueprint || t is Frame || map.designationManager.DesignationOn(t) != null ||
-                      map.listerHaulables.ThingsPotentiallyNeedingHauling().Contains(t);
+                      ((HashSet<Thing>)AccessTools.Field(typeof(ListerHaulables), "haulables").GetValue(map.listerHaulables)).Contains(t);
 
             if (res)
             {

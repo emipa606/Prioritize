@@ -24,10 +24,10 @@ public class Frame_FailConstruction
                 patchphase = 2;
             }
 
-            if (inst.operand.Equals( typeof(GenSpawn).GetMethod(nameof(GenSpawn.Spawn),
-                [
-                    typeof(Thing), typeof(IntVec3), typeof(Map), typeof(Rot4), typeof(WipeMode), typeof(bool)
-                ])))
+            if (inst.operand != null && inst.operand.Equals(AccessTools.Method(typeof(GenSpawn), nameof(GenSpawn.Spawn), new[]
+                {
+                    typeof(Thing)
+                })))
             {
                 patchphase = 1;
             }
@@ -36,6 +36,10 @@ public class Frame_FailConstruction
 
     public static void FixPriority(Thing fromFrame, Thing toBlueprint)
     {
+        if (MainMod.save == null)
+        {
+            return;
+        }
         if (MainMod.save.TryGetThingPriority(fromFrame, out var pri))
         {
             MainMod.save.SetThingPriority(toBlueprint, pri);
