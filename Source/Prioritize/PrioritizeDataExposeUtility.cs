@@ -46,5 +46,26 @@ namespace Prioritize
                 arr = null;
             }
         }
+
+        public static string AddLineBreaksToLongString(this string str)
+        {
+            StringBuilder stringBuilder = new StringBuilder(str.Length + (str.Length / 100 + 3) * 2 + 1);
+            stringBuilder.AppendLine();
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (i % 100 == 0 && i != 0)
+                {
+                    stringBuilder.AppendLine();
+                }
+                stringBuilder.Append(str[i]);
+            }
+            stringBuilder.AppendLine();
+            return stringBuilder.ToString();
+        }
+
+        public static string RemoveLineBreaks(this string str)
+        {
+            return new StringBuilder(str).Replace("\n", "").Replace("\r", "").ToString();
+        }
     }
 }
