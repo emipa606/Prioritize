@@ -24,9 +24,16 @@ public class Designator_Priority_Thing : Designator
 
     public override int DraggableDimensions => 2;
 
-    public override bool DragDrawMeasurements => true;
-
-
+    public override void DesignateMultiCell(IEnumerable<IntVec3> cells)
+    {
+        foreach (IntVec3 c in cells)
+        {
+            if (CanDesignateCell(c).Accepted)
+            {
+                DesignateSingleCell(c);
+            }
+        }
+    }
 
     public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
     {

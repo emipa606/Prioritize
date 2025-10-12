@@ -24,7 +24,6 @@ public static class MainMod
 
     public static PriorityDrawMode ForcedDrawMode = PriorityDrawMode.None;
 
-
     public static readonly HashSet<int> DestroyedThingId = new HashSet<int>();
 
     public static void RemoveThingPriorityNow()
