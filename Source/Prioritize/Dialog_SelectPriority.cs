@@ -15,7 +15,7 @@ public class Dialog_SelectPriority : Window
         closeOnClickedOutside = true;
     }
 
-    public override Vector2 InitialSize => new Vector2(300, 110);
+    public override Vector2 InitialSize => new(300, 110);
 
     public override void DoWindowContents(Rect inRect)
     {

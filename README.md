@@ -1,14 +1,14 @@
-# [Prioritize (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3276664162)
+# [[Abandoned] Prioritize (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3276664162)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of InsertKeys mod https://steamcommunity.com/sharedfiles/filedetails/?id=1579272031
 
 - Removed the HugsLib dependency from 1.5
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Abandoned.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 # Prioritize many things!
 
@@ -63,15 +63,15 @@ Non steam download https://github.com/kpqi5858/Prioritize/releases/tag/v1.1
 (Or source code in github repo)
 
 
-![Image](https://i.imgur.com/qWJBwra.gif)
+![Image](https://img.litet.net/qWJBwra.gif)
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -79,4 +79,4 @@ Non steam download https://github.com/kpqi5858/Prioritize/releases/tag/v1.1
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/Prioritize?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3276664162) | tags: prioritization,  jobs
+[![Image](https://img.shields.io/github/v/release/emipa606/Prioritize?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3276664162) | tags: jobs, prioritization

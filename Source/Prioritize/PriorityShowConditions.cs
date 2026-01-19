@@ -15,7 +15,7 @@ public static class PriorityShowConditions
 
     static PriorityShowConditions()
     {
-        var defcond = new PriorityShowCondition(delegate(Thing t)
+        var defaultCondition = new PriorityShowCondition(delegate(Thing t)
         {
             var map = t.Map;
             if (map == null)
@@ -55,9 +55,9 @@ public static class PriorityShowConditions
 
             return res;
         }, "P_Auto".Translate());
-        DefaultCondition = defcond;
+        DefaultCondition = defaultCondition;
 
-        Conditions.Add(defcond);
+        Conditions.Add(defaultCondition);
 
         Conditions.Add(new PriorityShowCondition(t => t is Blueprint or Frame,
             "BlueprintLabelExtra".Translate()));
@@ -75,10 +75,10 @@ public static class PriorityShowConditions
             "P_Items".Translate()));
 
         Conditions.Add(new PriorityShowCondition(delegate { return true; }, "ShowAll".Translate()));
-        CacheMenuOptions();
+        cacheMenuOptions();
     }
 
-    private static void CacheMenuOptions()
+    private static void cacheMenuOptions()
     {
         foreach (var v in Conditions)
         {

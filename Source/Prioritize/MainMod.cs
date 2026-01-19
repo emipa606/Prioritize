@@ -61,31 +61,31 @@ public static class MainMod
 
     public static Color GetPriorityDrawColor(bool IsCell, float pri)
     {
-        var CellColorUpper = new Color(0, 0, 1); //Blue
-        var CellColorDown = new Color(1, 0.5f, 0); //Orange
+        var cellColorUpper = new Color(0, 0, 1); //Blue
+        var cellColorDown = new Color(1, 0.5f, 0); //Orange
 
-        var ThingColorUpper = new Color(0, 1, 0); //Green
-        var ThingColorDown = new Color(1, 0, 0); //Red
+        var thingColorUpper = new Color(0, 1, 0); //Green
+        var thingColorDown = new Color(1, 0, 0); //Red
 
 
-        var ColorUpper = IsCell ? CellColorUpper : ThingColorUpper;
-        var ColorDown = IsCell ? CellColorDown : ThingColorDown;
+        var colorUpper = IsCell ? cellColorUpper : thingColorUpper;
+        var colorDown = IsCell ? cellColorDown : thingColorDown;
 
-        var ThresholdPri = 6.25f;
-        if (PrioritizeMod.instance.Settings.UseLowerAsHighPriority)
+        const float thresholdPri = 6.25f;
+        if (PrioritizeMod.Instance.Settings.UseLowerAsHighPriority)
         {
             pri = -pri;
         }
 
         var res = Color.white;
-        if (pri > 0)
+        switch (pri)
         {
-            res = Color.Lerp(res, ColorUpper, pri / ThresholdPri);
-        }
-
-        if (pri < 0)
-        {
-            res = Color.Lerp(res, ColorDown, -pri / ThresholdPri);
+            case > 0:
+                res = Color.Lerp(res, colorUpper, pri / thresholdPri);
+                break;
+            case < 0:
+                res = Color.Lerp(res, colorDown, -pri / thresholdPri);
+                break;
         }
 
         return res;
@@ -109,7 +109,7 @@ public static class MainMod
 
     public static void DrawThingLabel(Vector2 screenPos, string text, Color textColor)
     {
-        SetProperDrawSize();
+        setProperDrawSize();
         var x = Text.CalcSize(text).x;
         GUI.color = textColor;
         Text.Anchor = TextAnchor.UpperCenter;
@@ -120,7 +120,7 @@ public static class MainMod
         Text.Font = GameFont.Small;
     }
 
-    private static void SetProperDrawSize()
+    private static void setProperDrawSize()
     {
         if (GetMapRect().Area > 10000)
         {

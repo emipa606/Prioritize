@@ -22,12 +22,9 @@ public class PlaySettings_DoPlaySettingsGlobalControls
 
         var listOptions = new List<FloatMenuOption>
         {
-            new FloatMenuOption("None".Translate(),
-                delegate { MainMod.ForcedDrawMode = PriorityDrawMode.None; }),
-            new FloatMenuOption("P_Cell".Translate(),
-                delegate { MainMod.ForcedDrawMode = PriorityDrawMode.Cell; }),
-            new FloatMenuOption("P_Thing".Translate(),
-                delegate { MainMod.ForcedDrawMode = PriorityDrawMode.Thing; })
+            new("None".Translate(), delegate { MainMod.ForcedDrawMode = PriorityDrawMode.None; }),
+            new("P_Cell".Translate(), delegate { MainMod.ForcedDrawMode = PriorityDrawMode.Cell; }),
+            new("P_Thing".Translate(), delegate { MainMod.ForcedDrawMode = PriorityDrawMode.Thing; })
         };
         Find.WindowStack.Add(new FloatMenu(listOptions));
     }

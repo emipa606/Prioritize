@@ -20,7 +20,7 @@ public class PriorityGameComponent : GameComponent
     public override void GameComponentOnGUI()
     {
         base.GameComponentOnGUI();
-        if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
+        if (Find.CurrentMap == null || WorldRendererUtility.WorldRendered)
         {
             return;
         }
@@ -69,7 +69,7 @@ public class PriorityGameComponent : GameComponent
             if (MainMod.PriorityDraw == PriorityDrawMode.Cell)
             {
                 Vector3 v = GenMapUI.LabelDrawPosFor(intVec);
-                int p = MainMod.save.GetPriorityMapData(map).GetPriorityAt(intVec);
+                int p = PSaveData.GetPriorityMapData(map).GetPriorityAt(intVec);
                 if (p != 0)
                 {
                     MainMod.DrawThingLabel(v, p.ToString(), MainMod.GetPriorityDrawColor(true, p));

@@ -1,5 +1,8 @@
 # Changelog for Prioritize
 
+1.6.0 - Last update, added end-of-life message
+
+
 1.5.2 - Should now respect negative priorities and all player controlled pawns
 
 

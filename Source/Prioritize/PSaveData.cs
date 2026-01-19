@@ -5,7 +5,7 @@ namespace Prioritize;
 
 public class PSaveData : GameComponent
 {
-    public Dictionary<int, int> ThingPriority = new Dictionary<int, int>();
+    public Dictionary<int, int> ThingPriority = new();
 
     public PSaveData()
     {
@@ -13,23 +13,6 @@ public class PSaveData : GameComponent
 
     public PSaveData(Game game)
     {
-    }
-
-    public int GetOrCreateThingPriority(Thing t)
-    {
-        if (t == null)
-        {
-            Log.ErrorOnce("GetOrCreateThingPriority called with null Thing.", "P_GOCTP".GetHashCode());
-            return 0;
-        }
-
-        if (ThingPriority.TryGetValue(t.thingIDNumber, out var val))
-        {
-            return val;
-        }
-
-        ThingPriority.Add(t.thingIDNumber, 0);
-        return 0;
     }
 
     public bool TryGetThingPriority(Thing t, out int pri)
@@ -71,7 +54,7 @@ public class PSaveData : GameComponent
         }
     }
 
-    public PriorityMapData GetPriorityMapData(Map m)
+    public static PriorityMapData GetPriorityMapData(Map m)
     {
         if (m != null)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using Verse;
+﻿using Verse;
 
 namespace Prioritize;
 
@@ -21,8 +20,8 @@ public class PriorityMapData : MapComponent
 
     public short GetPriorityAt(IntVec3 loc)
     {
-        var retval = priorityGrid[map.cellIndices.CellToIndex(loc)];
-        if (retval != 0)
+        var returnValue = priorityGrid[map.cellIndices.CellToIndex(loc)];
+        if (returnValue != 0)
         {
             return (short)(priorityGrid[map.cellIndices.CellToIndex(loc)] - 32768);
         }
@@ -47,36 +46,20 @@ public class PriorityMapData : MapComponent
         }
 
         Scribe_Values.Look(ref numCells, "numCells");
-        if (Scribe.mode == LoadSaveMode.Saving)
+        switch (Scribe.mode)
         {
-            MapExposeUtility.ExposeUshort(map, c => priorityGrid[map.cellIndices.CellToIndex(c)],
-                delegate(IntVec3 c, ushort val)
-                {
-                    priorityGrid[map.cellIndices.CellToIndex(c)] = val;
-                }, "priorityGrid");
-        }
-        else if (Scribe.mode == LoadSaveMode.LoadingVars)
-        {
-            priorityGrid = new ushort[numCells];
-            DataExposeUtility.LookByteArray(ref griddata, "priorityGrid");
-            DataSerializeUtility.LoadUshort(griddata, numCells, delegate(int c, ushort val) { priorityGrid[c] = val; });
-            griddata = null;
-        }
-    }
-
-    public static void ExposeUshort(Map map, Func<IntVec3, ushort> shortReader, Action<IntVec3, ushort> shortWriter,
-        string label)
-    {
-        byte[] arr = null;
-        if (Scribe.mode == LoadSaveMode.Saving)
-        {
-            arr = MapSerializeUtility.SerializeUshort(map, shortReader);
-        }
-
-        DataExposeUtility.LookByteArray(ref arr, label);
-        if (Scribe.mode == LoadSaveMode.LoadingVars)
-        {
-            MapSerializeUtility.LoadUshort(arr, map, shortWriter);
+            case LoadSaveMode.Saving:
+                MapExposeUtility.ExposeUshort(map, c => priorityGrid[map.cellIndices.CellToIndex(c)],
+                    delegate(IntVec3 c, ushort val) { priorityGrid[map.cellIndices.CellToIndex(c)] = val; },
+                    "priorityGrid");
+                break;
+            case LoadSaveMode.LoadingVars:
+                priorityGrid = new ushort[numCells];
+                DataExposeUtility.LookByteArray(ref griddata, "priorityGrid");
+                DataSerializeUtility.LoadUshort(griddata, numCells,
+                    delegate(int c, ushort val) { priorityGrid[c] = val; });
+                griddata = null;
+                break;
         }
     }
 }

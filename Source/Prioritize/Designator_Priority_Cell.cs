@@ -23,7 +23,7 @@ public class Designator_Priority_Cell : Designator_Priority_Thing
 
     public override void DesignateSingleCell(IntVec3 c)
     {
-        MainMod.save.GetPriorityMapData(Map).SetPriorityAt(c, MainMod.SelectedPriority);
+        PSaveData.GetPriorityMapData(Map).SetPriorityAt(c, MainMod.SelectedPriority);
     }
 
     public override void RenderHighlight(List<IntVec3> dragCells)

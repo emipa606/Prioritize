@@ -7,6 +7,7 @@ namespace Prioritize;
 
 public class Designator_Priority_Thing : Designator
 {
+    // ReSharper disable once MemberCanBeProtected.Global
     public Designator_Priority_Thing()
     {
         soundDragSustain = SoundDefOf.Designate_DragStandard;
@@ -18,7 +19,7 @@ public class Designator_Priority_Thing : Designator
         soundSucceeded = SoundDefOf.Designate_PlanAdd;
     }
 
-    public override int DraggableDimensions => 2;
+    public override DrawStyleCategoryDef DrawStyleCategory => DrawStyleCategoryDefOf.Orders;
 
     public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
     {

@@ -7,23 +7,14 @@ namespace Prioritize.HarmonyPatches;
 [HarmonyPatch(typeof(WorkGiver_Scanner), nameof(WorkGiver_Scanner.GetPriority), typeof(Pawn), typeof(TargetInfo))]
 public class WorkGiver_Scanner_GetPriority
 {
-    public static void Postfix(Pawn pawn, TargetInfo t, ref float __result)
+    public static void Postfix(Pawn pawn, TargetInfo t, ref float __result, WorkGiver_Scanner __instance)
     {
-        //if (__result < 0)
-        //{
-        //    return;
-        //}
-
         if (!pawn.IsPlayerControlled)
         {
             return;
         }
 
-        var m = pawn.Map;
-        if (m == null)
-        {
-            m = t.Map;
-        }
+        var m = pawn.Map ?? t.Map;
 
         var priority = 0f;
 
@@ -32,9 +23,9 @@ public class WorkGiver_Scanner_GetPriority
             priority += MainMod.save.TryGetThingPriority(t.Thing, out var pri) ? pri + 0.1f : 0;
         }
 
-        priority += MainMod.save.GetPriorityMapData(m).GetPriorityAt(t.Cell);
+        priority += PSaveData.GetPriorityMapData(m).GetPriorityAt(t.Cell);
 
-        if (PrioritizeMod.instance.Settings.UseLowerAsHighPriority)
+        if (PrioritizeMod.Instance.Settings.UseLowerAsHighPriority)
         {
             __result -= priority;
         }
@@ -42,5 +33,7 @@ public class WorkGiver_Scanner_GetPriority
         {
             __result += priority;
         }
+
+        Log.Message($"Overriding priority for {__instance} for {pawn} to {__result}");
     }
 }
