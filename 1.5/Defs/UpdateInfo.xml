@@ -5,7 +5,7 @@
 		<banner>UpdateInfo/Prioritize</banner>
 	</TabulaRasa.UpdateDef>
 	<TabulaRasa.UpdateDef ParentName="Prioritize_UpdateInfoBase" MayRequire="neronix17.toolbox">
-		<defName>Prioritize_1_5_2</defName>
+		<defName>Prioritize_1_6_0</defName>
 		<date>2026/1/19</date>
 		<content>This mod will not be further updated.</content>
 	</TabulaRasa.UpdateDef>
